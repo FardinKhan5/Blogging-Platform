@@ -17,7 +17,7 @@ const registerController = asyncHandler(async (req, res) => {
     })
     await user.save()
     const token = jwt.sign({ userId: user._id, username: user.username, email: user.email }, process.env.JWT_SECRET)
-    res.status(201).cookie("token",token,{httpOnly:true,maxAge:24*60*60*1000}).json(new ApiResponse(201,user, "User registered successfully"))
+    res.status(201).cookie("token",token,{httpOnly:true,maxAge:24*60*60*1000,sameSite:'None',secure:true}).json(new ApiResponse(201,user, "User registered successfully"))
 })
 const loginController = asyncHandler(async (req, res) => {
     const { email, password } = req.body
@@ -27,7 +27,7 @@ const loginController = asyncHandler(async (req, res) => {
     const isValid = await bcrypt.compare(password, user.password)
     if (!isValid) throw new ApiError(400, "Incorrect Password")
     const token = jwt.sign({ userId: user._id, username: user.username, email: user.email }, process.env.JWT_SECRET)
-    res.status(200).cookie("token",token,{httpOnly:true,maxAge:24*60*60*1000}).json(new ApiResponse(200,user, "Logged in successfully"))
+    res.status(200).cookie("token",token,{httpOnly:true,maxAge:24*60*60*1000,sameSite:'None',secure:true}).json(new ApiResponse(200,user, "Logged in successfully"))
 })
 
 const logoutController=asyncHandler(async (req,res)=>{
