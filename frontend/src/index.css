@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui"{
+  themes: cupcake --default, dracula ;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
