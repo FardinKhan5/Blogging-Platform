@@ -9,7 +9,7 @@ const app=express()
 const port=process.env.PORT || 3000
 const mongoUri=process.env.MONGO_URI
 app.use(cors({
-    origin:["*"],
+    origin:"*",
     credentials:true
 }))
 app.use(cookieParser())
