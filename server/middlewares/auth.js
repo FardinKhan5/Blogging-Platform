@@ -1,6 +1,7 @@
 const jwt=require("jsonwebtoken")
 const ApiError=require('../utils/ApiError')
 const asyncHandler = require("../utils/asyncHandler")
+
 const verifyAuthToken=asyncHandler(async (req,res,next)=>{
     try {
     if(!req.headers.authorization && !req.cookies.token) throw new ApiError(403,"Access-Denied")
@@ -12,6 +13,6 @@ const verifyAuthToken=asyncHandler(async (req,res,next)=>{
     } catch (error) {
         throw new ApiError(403,error.message)
     }
-}}
+})
 
 module.exports= verifyAuthToken
