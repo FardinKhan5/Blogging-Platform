@@ -1,7 +1,7 @@
 const jwt=require("jsonwebtoken")
 const ApiError=require('../utils/ApiError')
 const asyncHandler = require("../utils/asyncHandler")
-const verifyAuthToken=asyncHandler(sync (req,res,next)=>{
+const verifyAuthToken=asyncHandler(async (req,res,next)=>{
     try {
     if(!req.headers.authorization && !req.cookies.token) throw new ApiError(403,"Access-Denied")
     const token=req.cookies?.token || req.headers?.authorization.split(" ")[1]
