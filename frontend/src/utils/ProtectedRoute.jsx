@@ -20,6 +20,7 @@ function ProtectedRoute({children}) {
             })
             .finally(()=>setLoading(false))
         }, [children])
+    if(!localStorage.getItem('isLogin')) return <Navigate to={"/login"} />
     if(loading) return <Loading />
     return children
 }
